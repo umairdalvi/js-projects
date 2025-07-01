@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+    <link href="./assets/bootstrap-5.3.7/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+    <section class="form-section">
+        <div class="container form-container">
+            <form id="regForm">
+                <p class="title">Welcome<br><span>sign up to continue</span></p>
+                <div class="row px-sm-3">
+                    <div class="col-12 mt-1">
+                        <input type="text" class="inp" id="name" name="name" placeholder="Full Name">
+                        <p id="name-validation" class="error-box"></p>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <input type="email" class="inp" id="email" name="" placeholder="Email">
+                        <p id="email-validation" class="error-box"></p>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <input type="password" class="inp" id="pass" name="" placeholder="Password">
+                        <p id="pass-validation" class="error-box"></p>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <input type="password" class="inp" id="cpass" name="" placeholder="Confirm Password">
+                        <p id="cpass-validation" class="error-box"></p>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <label for="course" class="form-label">Select Course: </label>
+                        <select name="course" id="course" class="inp">
+                            <option value="default" selected>Select a course</option>
+                            <option value="fsd">Full Stack Development</option>
+                            <option value="uiux">UI/UX</option>
+                            <option value="androidDev">Android Development</option>
+                            <option value="iosDev">iOS Development</option>
+                            <option value="gameDev">Game Development</option>
+                        </select>
+                        <p id="course-validation" class="error-box"></p>
+                    </div>
+                    <div class="col-12">
+                        <p class="form-label">Select gender:</p>
+                        <div class="radio-input inp" id="gender">
+                            <label>
+                                <input type="radio" id="male" name="gender" value="male">
+                                Male
+                            </label>
+                            <label>
+                                <input type="radio" id="female" name="gender" value="female">
+                                Female
+                            </label>
+                            <span class="selection"></span>
+                        </div>
+                        <p id="gender-validation" class="error-box"></p>
+                    </div>
+                </div>
+                <div class="w-100 text-center">
+                    <button class="submit" id="submitBtn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="./assets/bootstrap-5.3.7/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
