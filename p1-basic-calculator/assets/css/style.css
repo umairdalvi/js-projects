@@ -1,0 +1,103 @@
+.calculator-section {
+  background: linear-gradient(to right, #a7bfe8, #6190e8);
+  height: 100vh;
+  padding: 1rem;
+  overflow-y: auto;
+
+}
+
+h1 {
+  position: relative;
+  z-index: 10;
+}
+
+.form-wrapper {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  height: max-content;
+}
+
+.calculator-form {
+  background-color: rgba(255, 255, 255, 0.125);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+  position: relative;
+  width: fit-content;
+}
+
+form input {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border: none !important;
+}
+
+form input:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-glass {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-glass:hover {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 6px #ffffff !important;
+}
+
+.btn-glass:active {
+  box-shadow: none !important;
+}
+
+.btn-reset {
+  background-color: rgba(220, 53, 69, 0.6);
+  color: #fff;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-reset:hover {
+  background-color: rgba(220, 53, 69, 0.7) !important;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.8);
+}
+
+.btn-reset:active {
+  box-shadow: none;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #aed8ff;
+  z-index: 0;
+}
+
+.circle-1 {
+  height: 100px;
+  width: 100px;
+  top: 120px;
+  left: -20px;
+}
+
+.circle-2 {
+  height: 160px;
+  width: 160px;
+  top: -10px;
+  right: -10px;
+}
+
+.circle-3 {
+  height: 180px;
+  width: 180px;
+  bottom: -60px;
+  left: 110px;
+}
+
+
