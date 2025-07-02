@@ -6,6 +6,10 @@
   text-decoration: none;
 }
 
+body{
+  height: 100vh;
+}
+
 .form-section {
   display: flex;
   align-items: center;
@@ -16,7 +20,6 @@
 }
 
 .form-container {
-  /* margin-top: 30px; */
   width: 500px;
   border-radius: 10px;
 }
