@@ -86,7 +86,12 @@ $(document).ready(function () {
   inputValidation(emailElement, emailValidationElement, emailRegex, "Please enter a valid email", (val) => { validEmail = val })
   inputValidation(passElement, passValidationElement, passRegex, "Password must be at least 8 characters and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character", (val) => { validPass = val })
 
-  $("#pass").on("input", passMatch);
+  $("#pass").on("input", function () {
+    if (!(cpassElement.value === "")) {
+      passMatch();
+    }
+  })
+
   $("#cpass").on("input", passMatch)
 
   $("#course").on("change", function () {
