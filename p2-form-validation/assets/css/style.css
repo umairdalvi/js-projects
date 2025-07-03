@@ -26,7 +26,7 @@ body{
 
 .error {
   color: red;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -38,58 +38,6 @@ body{
 
 .error-field {
   border: 2px solid red !important;
-}
-
-.radio-input input {
-  display: none;
-}
-
-.radio-input {
-  --container_width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.radio-input label {
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  font-size: 14px;
-}
-
-.selection {
-  display: none;
-  position: absolute;
-  height: 100%;
-  width: calc(var(--container_width) / 2);
-  z-index: 0;
-  left: 0;
-  top: 0;
-  transition: 0.15s ease;
-  border-radius: 3px;
-}
-
-.radio-input label:has(input:checked) {
-  color: #000;
-}
-
-.radio-input label:has(input:checked) ~ .selection {
-  background-color: beige;
-  display: inline-block;
-}
-
-.radio-input label:nth-child(1):has(input:checked) ~ .selection {
-  transform: translateX(calc(var(--container_width) * 0 / 2));
-}
-
-.radio-input label:nth-child(2):has(input:checked) ~ .selection {
-  transform: translateX(calc(var(--container_width) * 2 / 2));
 }
 
 #regForm {
@@ -136,11 +84,6 @@ body{
   outline: none;
 }
 
-.radio-input.inp {
-  padding: 0;
-  background-color: darkgray;
-  color: #303030;
-}
 
 .inp:focus {
   border: 2px solid var(--input-focus);
