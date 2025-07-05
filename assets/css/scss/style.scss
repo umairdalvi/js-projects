@@ -11,6 +11,8 @@ body {
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
   background-repeat: no-repeat;
   height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 a {
@@ -64,6 +66,7 @@ a.project-card {
 }
 
 .container {
+  width: 100%;
   max-width: 1320px;
   padding: 25px;
 }
