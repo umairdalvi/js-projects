@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+
+    <link rel="shortcut icon" href="./assets/images/favicon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="./assets/fonts/quicksand-woff/stylesheet.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    
+    <h1>Tic Tac Toe</h1>
+    <div class="container">
+        <div class="choose-player">
+            <p>Choose first player:</p>
+            <div class="player-btn-group">
+                <button class="player" id="player-x"><img src="./assets/images/x-mark.svg" alt=""></button>
+                <button class="player" id="player-o"><img src="./assets/images/o-mark.svg" alt=""></button>
+            </div>
+        </div>
+
+        <div class="game-wrapper">
+            <div id="game">
+                <div class="game-stats">
+                    <div class="score-card">
+                        <p>Score: </p>
+                        <div>
+                            <p class="score xScore"></p>
+                            <p class="score oScore"></p>
+                        </div>
+                    </div>
+                    <div id="turn"></div>
+                </div>
+                <div class="game-board">
+                    <button class="box" id="box1"></button>
+                    <button class="box" id="box2"></button>
+                    <button class="box" id="box3"></button>
+                    <button class="box" id="box4"></button>
+                    <button class="box" id="box5"></button>
+                    <button class="box" id="box6"></button>
+                    <button class="box" id="box7"></button>
+                    <button class="box" id="box8"></button>
+                    <button class="box" id="box9"></button>
+                </div>
+                <button id="newGame">New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
+
 </html>
