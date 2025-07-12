@@ -177,7 +177,7 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.score-card-small {
+.score-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -186,16 +186,16 @@ h1 {
   color: var(--text-color);
   font-weight: 500;
 }
-.score-card-small > p {
+.score-card > p {
   margin: 0;
   font-weight: 600;
 }
-.score-card-small div {
+.score-card div {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.score-card-small .score {
+.score-card .score {
   font-size: clamp(1rem, 2vw, 1.35rem);
   font-weight: 600;
   width: 50px;
@@ -205,11 +205,11 @@ h1 {
   gap: 10px;
   color: var(--text-color);
 }
-.score-card-small .xScore img {
+.score-card .xScore img {
   height: 20px;
   width: 20px;
 }
-.score-card-small .oScore img {
+.score-card .oScore img {
   height: 22px;
   width: 22px;
 }
