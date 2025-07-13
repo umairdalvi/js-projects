@@ -35,8 +35,6 @@ function checkWin(player) {
 }
 
 function choosePlayer() {
-    $(".choose-player").css("display", "flex");
-    $(".game-wrapper").css("display", "none");
     $("#turn").html("").css("display", "flex");
 
     $("#player-x").on("click", function () {
@@ -97,6 +95,9 @@ $(document).ready(function () {
         $(".box").html("");
         startNewGame = false;
         counter = 0;
+        $(".game-wrapper").css("display", "none");
+        $(".choose-player").css("display", "flex");
+
         choosePlayer();
     });
 
@@ -127,6 +128,7 @@ $(document).ready(function () {
                 }
 
                 $("#turn").html(`${player2}'s turn`);
+
             } else {
                 box.innerHTML = player2;
                 counter++;
@@ -158,7 +160,6 @@ $(document).ready(function () {
                 timerProgressBar: true,
                 heightAuto: false,
             });
-            console.log(startNewGame);
 
             $("#turn").html("").css("display", "none");
         }

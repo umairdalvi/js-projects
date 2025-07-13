@@ -106,6 +106,7 @@ h1 {
 }
 
 .game-wrapper {
+  display: none;
   width: -moz-fit-content;
   width: fit-content;
   padding: 10px;
