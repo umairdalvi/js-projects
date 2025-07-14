@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Palindrome</title>
+
+    <link rel="stylesheet" href="../assets/css/shared/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Check Palindrome</h1>
+            <div class="box">
+                <input type="text" id="strInput" class="inp" placeholder="Enter a word">
+                <button id="checkPalindromeBtn" class="btn">Check</button>
+                <p id="ans" class="ans"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#checkPalindromeBtn").on("click", function () {
+
+                let str = String(document.getElementById("strInput").value).toLowerCase();
+                let ans = document.getElementById("ans");
+
+                $(ans).removeClass("red green")
+
+                if (str === "") {
+                    $(ans).text("Please enter a word.").addClass("red");
+                    return;
+                }
+
+                (str.trim() === str.trim().split("").reverse().join("")) ?
+                    $(ans).text("PALINDROME").addClass("green") :
+                    $(ans).text("NOT PALINDROME").addClass("red") ;
+            })
+
+        })
+    </script>
+</body>
+
+</html>
