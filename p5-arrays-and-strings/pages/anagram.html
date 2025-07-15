@@ -11,8 +11,51 @@
 
 <body>
 
+    <div class="container">
+        <div class="wrapper">
+            <h1>Check Anagram</h1>
+
+            <div class="box">
+                <input type="text" id="strInput1" class="inp" placeholder="Enter first word/phrase">
+                <input type="text" id="strInput2" class="inp" placeholder="Enter second word/phrase">
+                <button id="checkAnagramBtn" class="btn">Check</button>
+                <p id="ans" class="ans"></p>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#checkAnagramBtn").on("click", function () {
+
+                let str1 = String(document.getElementById("strInput1").value).toLowerCase();
+                let str2 = String(document.getElementById("strInput2").value).toLowerCase();
+                let ans = document.getElementById("ans");
+
+                $(ans).removeClass("red green")
+
+                function cleanStr(str) {
+                    return str.trim().toLowerCase().split(" ").join("").split("").sort().join("");
+                }
+
+                if (str1 === "" || str2 === "") {
+                    $(ans).text("Please enter words in both fields.").addClass("red");
+                    return;
+                }
+
+                if (cleanStr(str1).length !== cleanStr(str2).length) {
+                    $(ans).text("NOT ANAGRAM").addClass("red");
+                    return;
+                }
+
+                (cleanStr(str1) === cleanStr(str2)) ?
+                    $(ans).text("ANAGRAM").addClass("green") :
+                    $(ans).text("NOT ANAGRAM").addClass("red");
+            })
+
+        })
+    </script>
 </body>
 
 </html>
