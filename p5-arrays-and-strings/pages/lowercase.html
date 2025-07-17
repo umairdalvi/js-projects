@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convert to Lowercase</title>
+
+    <link rel="stylesheet" href="../assets/css/shared/style.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="wrapper">
+            <h1>Convert to Lowercase</h1>
+            <div class="box">
+                <input type="text" id="strInput" class="inp" placeholder="Enter a word/sentence">
+                <button id="convertBtn" class="btn">Convert</button>
+                <p id="label" class="label"></p>
+                <p id="ans" class="ans"></p>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#convertBtn").on("click", function () {
+
+                    let str = String(document.getElementById("strInput").value);
+                    let ans = document.getElementById("ans");
+                    let label = document.getElementById("label");
+
+                    $(ans).removeClass("red");
+                    $(label).text("");
+
+                    if (str === "") {
+                        $(ans).text("Please enter a word or sentence.").addClass("red");
+                        return;
+                    }
+
+                    $(label).text("Converted String:");
+                    $(ans).text(str.trim().toLowerCase());
+                })
+            })
+        </script>
 </body>
+
 </html>
