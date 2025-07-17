@@ -20,29 +20,30 @@
                 <p id="ans" class="ans"></p>
             </div>
         </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#convertBtn").on("click", function () {
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#convertBtn").on("click", function () {
+                let str = String(document.getElementById("strInput").value);
+                let ans = document.getElementById("ans");
+                let label = document.getElementById("label");
 
-                    let str = String(document.getElementById("strInput").value);
-                    let ans = document.getElementById("ans");
-                    let label = document.getElementById("label");
+                $(ans).removeClass("red");
+                $(label).text("");
 
-                    $(ans).removeClass("red");
-                    $(label).text("");
+                if (str === "") {
+                    $(ans).text("Please enter a word or sentence.").addClass("red");
+                    return;
+                }
 
-                    if (str === "") {
-                        $(ans).text("Please enter a word or sentence.").addClass("red");
-                        return;
-                    }
-
-                    $(label).text("Converted String:");
-                    $(ans).text(str.trim().toLowerCase());
-                })
+                $(label).text("Converted String:");
+                $(ans).text(str.trim().toLowerCase());
             })
-        </script>
+        })
+    </script>
 </body>
 
 </html>
