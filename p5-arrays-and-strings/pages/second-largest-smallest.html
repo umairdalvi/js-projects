@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Second Largest and Second Smallest Numebr</title>
+
+    <link rel="stylesheet" href="../assets/css/shared/style.css">
+
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="wrapper">
+            <h1>Find second largest and second <br> smallest number in an array</h1>
+            <div class="box">
+                <input type="text" id="strInput" class="inp" placeholder="Enter at least four numbers.">
+                <button id="findBtn" class="btn">Find</button>
+                <p id="ans" class="ans"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#findBtn").on("click", function () {
+
+                let str = String(document.getElementById("strInput").value);
+                let ans = document.getElementById("ans");
+                const allowed = /^[+-]?\d+(\.\d+)?$/
+
+                $(ans).removeClass("red");
+
+                if (str === "") {
+                    $(ans).text("Please enter at least four numbers.").addClass("red");
+                    return;
+                }
+
+                let numbers = str.
+                    trim().
+                    split(" ").
+                    filter(val => val !== "" && allowed.test(val)).
+                    map(val => Number(val)).
+                    sort((a, b) => a - b);
+
+                if (numbers.length < 4) {
+                    $(ans).text("Please enter at least four numbers.").addClass("red");
+                    return;
+                }
+
+                $("#ans").html(`
+                <p>2nd smallest number: ${numbers[1]}</p>
+                <p>2nd largest number: ${numbers[numbers.length - 2]}</p>
+                `)
+            })
+        })
+    </script>
 </body>
+
 </html>
