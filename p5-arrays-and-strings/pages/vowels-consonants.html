@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vowels and Consonants</title>
+
+    <link rel="stylesheet" href="../assets/css/shared/style.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="wrapper">
+            <h1>Count Vowels and Consonants</h1>
+            <div class="box">
+                <input type="text" id="strInput" class="inp" placeholder="Enter a word/sentence">
+                <button id="countBtn" class="btn">Count</button>
+                <p id="label" class="label"></p>
+                <p id="ans" class="ans"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#countBtn").on("click", function () {
+
+                let str = String(document.getElementById("strInput").value);
+                let ans = document.getElementById("ans");
+                let label = document.getElementById("label");
+
+                const vowelList = /[aeiou]/i;
+                const consonantList = /[b-df-hj-np-tv-z]/i;
+
+                let vowelCount = 0;
+                let consonantCount = 0;
+
+                $(ans).removeClass("red");
+                $(label).text("");
+
+                if (str === "") {
+                    $(ans).text("Please enter a word or sentence.").addClass("red");
+                    return;
+                }
+
+                str.split(" ").join("").split("").forEach((char) => {
+                    if (vowelList.test(char)) {
+                        vowelCount++;
+                    } else if (consonantList.test(char)) {
+                        consonantCount++;
+                    }
+                })
+
+                $("#ans").html(`
+                <p>Vowels: ${vowelCount}</p>
+                <p>Consonants: ${consonantCount}</p>
+                `);
+            })
+        })
+    </script>
 </body>
+
 </html>
