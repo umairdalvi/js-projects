@@ -16,7 +16,6 @@
             <div class="box">
                 <input type="text" id="strInput" class="inp" placeholder="Enter a word/sentence">
                 <button id="countBtn" class="btn">Count</button>
-                <p id="label" class="label"></p>
                 <p id="ans" class="ans"></p>
             </div>
         </div>
@@ -29,7 +28,6 @@
 
                 let str = String(document.getElementById("strInput").value);
                 let ans = document.getElementById("ans");
-                let label = document.getElementById("label");
 
                 const vowelList = /[aeiou]/i;
                 const consonantList = /[b-df-hj-np-tv-z]/i;
@@ -38,7 +36,6 @@
                 let consonantCount = 0;
 
                 $(ans).removeClass("red");
-                $(label).text("");
 
                 if (str === "") {
                     $(ans).text("Please enter a word or sentence.").addClass("red");
