@@ -41,7 +41,7 @@
                 let numbers = str.
                     trim().
                     split(" ").
-                    filter(val => val !== "" && allowed.test(val)).
+                    filter(val => allowed.test(val)).
                     map(val => Number(val)).
                     sort((a, b) => a - b);
 
