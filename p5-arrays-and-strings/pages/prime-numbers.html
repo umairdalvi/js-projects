@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Prime Numbers</title>
+
+    <link rel="stylesheet" href="../assets/css/shared/style.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="wrapper">
+            <h1>Find Prime Numbers</h1>
+            <div class="box">
+                <input type="text" id="strInput" class="inp" placeholder="Enter numbers">
+                <button id="findBtn" class="btn">Find</button>
+                <p id="label" class="label"></p>
+                <p id="ans" class="ans"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#findBtn").on("click", function () {
+
+                let str = String(document.getElementById("strInput").value);
+                let ans = document.getElementById("ans");
+                let label = document.getElementById("label");
+                const allowed = /^[1-9]\d*$/;
+
+                $(ans).removeClass("red").text("");
+                $(label).text("");
+
+                if (str === "") {
+                    $(ans).text("Please enter at leat one number.").addClass("red");
+                    return;
+                }
+
+                let numbers = str
+                    .trim()
+                    .split(" ")
+                    .filter((val) => {
+                        if (allowed.test(val)) {
+                            let num = Number(val)
+
+                            if (num < 2) return false;
+
+                            for (let i = 2; i <= Math.sqrt(num); i++) {
+                                if (num % i === 0) return false;
+                            }
+
+                            return true;
+                        }
+                        return false;
+                    })
+
+                if (numbers.length === 0) {
+                    $(ans).text("No prime numbers found.").addClass("red");
+                    return;
+                }
+
+                $(label).text("Prime Numbers:");
+                $(ans).text(numbers.join(", "));
+            })
+        })
+    </script>
 </body>
+
 </html>
