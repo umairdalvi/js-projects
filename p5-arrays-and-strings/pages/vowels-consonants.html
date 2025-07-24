@@ -11,12 +11,22 @@
 
 <body>
     <div class="container">
-        <div class="wrapper">
-            <h1>Count Vowels and Consonants</h1>
-            <div class="box">
-                <input type="text" id="strInput" class="inp" placeholder="Enter a word/sentence">
-                <button id="countBtn" class="btn">Count</button>
-                <p id="ans" class="ans"></p>
+        <div class="app-card">
+            <header class="app-header">
+                <h1 class="app-title">Vowels and Consonants</h1>
+                <p class="app-subtitle">Count the number of vowels and consonants in a string.</p>
+            </header>
+
+            <div class="form-group">
+                <label for="strInput" class="form-label">Word or Phrase</label>
+                <input type="text" id="strInput" class="form-input" placeholder="Enter a word or phrase.">
+            </div>
+
+            <button id="findBtn" class="btn-primary">Find</button>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-label">Result</div>
+                <div id="resultDisplay" class="result-display"></div>
             </div>
         </div>
     </div>
@@ -24,10 +34,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#countBtn").on("click", function () {
+            $("#findBtn").on("click", function () {
 
                 let str = String(document.getElementById("strInput").value);
-                let ans = document.getElementById("ans");
+                let ans = document.getElementById("resultDisplay");
 
                 const vowelList = /[aeiou]/i;
                 const consonantList = /[b-df-hj-np-tv-z]/i;
@@ -35,14 +45,15 @@
                 let vowelCount = 0;
                 let consonantCount = 0;
 
-                $(ans).removeClass("red");
+                $(ans).removeClass("error");
 
                 if (str === "") {
-                    $(ans).text("Please enter a word or sentence.").addClass("red");
+                    $(ans).text("PLEASE ENTER A WORD OR SENTENCE.").addClass("error");
+                    $(resultSection).css("display", "block");
                     return;
                 }
 
-                str.split(" ").join("").split("").forEach((char) => {
+                str.split("").forEach((char) => {
                     if (vowelList.test(char)) {
                         vowelCount++;
                     } else if (consonantList.test(char)) {
@@ -50,10 +61,11 @@
                     }
                 })
 
-                $("#ans").html(`
+                $("#resultDisplay").html(`
                 <p>Vowels: ${vowelCount}</p>
                 <p>Consonants: ${consonantCount}</p>
                 `);
+                $(resultSection).css("display", "block");
             })
         })
     </script>

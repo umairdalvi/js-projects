@@ -11,13 +11,22 @@
 
 <body>
     <div class="container">
-        <div class="wrapper">
-            <h1>Find Prime Numbers</h1>
-            <div class="box">
-                <input type="text" id="strInput" class="inp" placeholder="Enter numbers">
-                <button id="findBtn" class="btn">Find</button>
-                <p id="label" class="label"></p>
-                <p id="ans" class="ans"></p>
+        <div class="app-card">
+            <header class="app-header">
+                <h1 class="app-title">Find Prime Numbers</h1>
+                <p class="app-subtitle">Find and display prime numbers</p>
+            </header>
+
+            <div class="form-group">
+                <label for="strInput" class="form-label">Numbers</label>
+                <input type="text" id="strInput" class="form-input" placeholder="Enter space separated numbers.">
+            </div>
+
+            <button id="findBtn" class="btn-primary">Find Prime Numbers</button>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-label">Result</div>
+                <div id="resultDisplay" class="result-display"></div>
             </div>
         </div>
     </div>
@@ -28,43 +37,39 @@
             $("#findBtn").on("click", function () {
 
                 let str = String(document.getElementById("strInput").value);
-                let ans = document.getElementById("ans");
-                let label = document.getElementById("label");
-                const allowed = /^[1-9]\d*$/;
+                let resultDisplay = document.getElementById("resultDisplay");
+                let label = document.getElementById("label");;
 
-                $(ans).removeClass("red").text("");
-                $(label).text("");
+                $(resultDisplay).removeClass("success error neutral");
 
                 if (str === "") {
-                    $(ans).text("Please enter at leat one number.").addClass("red");
+                    $(resultDisplay).text("PLEASE ENTER AT LEAST ONE NUMBER.").addClass("error");
+                    $(resultSection).css("display", "block");
                     return;
                 }
 
                 let numbers = str
-                    .trim()
-                    .split(" ")
-                    .filter((val) => {
-                        if (allowed.test(val)) {
-                            let num = Number(val)
+                    .split(/[^-\d]+/)
+                    .map(val => Number(val))
+                    .filter((val, index, arr) => {
 
-                            if (num < 2) return false;
+                        if (val < 2) return false;
 
-                            for (let i = 2; i <= Math.sqrt(num); i++) {
-                                if (num % i === 0) return false;
-                            }
-
-                            return true;
+                        for (let i = 2; i <= Math.sqrt(val); i++) {
+                            if (val % i === 0) return false;
                         }
-                        return false;
+
+                        return arr.indexOf(val) === index;
                     })
 
                 if (numbers.length === 0) {
-                    $(ans).text("No prime numbers found.").addClass("red");
+                    $(resultDisplay).text("NO PRIME NUMBERS FOUND.").addClass("error");
+                    $(resultSection).css("display", "block");
                     return;
                 }
 
-                $(label).text("Prime Numbers:");
-                $(ans).text(numbers.join(", "));
+                $(resultDisplay).text(numbers.join(", "));
+                $(resultSection).css("display", "block");
             })
         })
     </script>

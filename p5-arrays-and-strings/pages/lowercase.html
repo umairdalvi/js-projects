@@ -11,36 +11,44 @@
 
 <body>
     <div class="container">
-        <div class="wrapper">
-            <h1>Convert to Lowercase</h1>
-            <div class="box">
-                <input type="text" id="strInput" class="inp" placeholder="Enter a word/sentence">
-                <button id="convertBtn" class="btn">Convert</button>
-                <p id="label" class="label"></p>
-                <p id="ans" class="ans"></p>
+        <div class="app-card">
+            <header class="app-header">
+                <h1 class="app-title">Lowercase Converter</h1>
+                <p class="app-subtitle">Convert a string to lowercase</p>   
+            </header>
+
+            <div class="form-group">
+                <label for="strInput" class="form-label">Word or Phrase</label>
+                <input type="text" id="strInput" class="form-input" placeholder="Enter word or phrase">
+            </div>
+
+            <button id="convertBtn" class="btn-primary">Convert</button>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-label">Result</div>
+                <div id="resultDisplay" class="result-display"></div>
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#convertBtn").on("click", function () {
 
                 let str = String(document.getElementById("strInput").value);
-                let ans = document.getElementById("ans");
-                let label = document.getElementById("label");
+                let resultDisplay = document.getElementById("resultDisplay");
 
-                $(ans).removeClass("red");
-                $(label).text("");
+                $(resultDisplay).removeClass("success error neutral");
 
                 if (str === "") {
-                    $(ans).text("Please enter a word or sentence.").addClass("red");
+                    $(resultDisplay).text("PLEASE ENTER A WORD OR SENTENCE.").addClass("error");
+                    $(resultSection).css("display", "block");
                     return;
                 }
-
-                $(label).text("Converted String:");
-                $(ans).text(str.trim().toLowerCase());
+                
+                $(resultDisplay).text(str.trim().toLowerCase());
+                $(resultSection).css("display", "block");
             })
         })
     </script>
