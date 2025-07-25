@@ -47,8 +47,10 @@
                 $(resultDisplay).removeClass("success error neutral");
 
                 function cleanStr(str) {
-                    return str.trim().toLowerCase().split(" ").join("").split("").sort().join("");
+                    return str.trim().toLowerCase().split("").filter(val => (val !== "" && val !== " ")).sort().join("");
                 }
+
+                console.log(cleanStr(str1), cleanStr(str2));
 
                 if (str1 === "" || str2 === "") {
                     $(resultDisplay).text("PLEASE ENTER WORDS IN BOTH FIELDS.").addClass("error");
@@ -67,7 +69,7 @@
                 } else {
                     $(resultDisplay).text("NOT AN ANAGRAM").addClass("error");
                 }
-                
+
                 $(resultSection).css("display", "block");
             });
         });
