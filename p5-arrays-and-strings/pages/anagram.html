@@ -44,7 +44,7 @@
                 let resultDisplay = document.getElementById("resultDisplay");
                 let resultSection = document.getElementById("resultSection");
 
-                $(resultDisplay).removeClass("success error neutral");
+                $(resultDisplay).removeClass("success error");
 
                 function cleanStr(str) {
                     return str.trim().toLowerCase().split("").filter(val => (val !== "" && val !== " ")).sort().join("");

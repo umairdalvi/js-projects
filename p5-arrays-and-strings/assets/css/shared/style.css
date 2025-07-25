@@ -235,11 +235,7 @@ body {
   color: var(--error);
   border-color: var(--error);
   background: rgba(239, 68, 68, 0.1);
-}
-
-.result-display.neutral {
-  color: var(--text-primary);
-}
+} 
 
 .result-stats {
   display: grid;
