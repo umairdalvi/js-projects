@@ -76,6 +76,9 @@ body {
   font-size: clamp(14px, 1.5vw, 16px);
   padding: clamp(1rem, 4vw, 2rem) !important;
 }
+body.swal2-shown {
+  overflow-y: auto !important;
+}
 
 .container {
   max-width: 900px;
@@ -521,8 +524,4 @@ select::placeholder {
 
 .swal2-html-container {
   color: var(--text-primary);
-}
-
-.swal2-container.swal2-center {
-  padding: 0;
 }
