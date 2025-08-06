@@ -36,6 +36,13 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="studentAge">Age *</label>
+                        <input type="number" id="studentAge" class="form-control" placeholder="Enter age" min="1"
+                            max="100">
+                        <div id="ageError" class="error-message" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="studentId">Student ID *</label>
                         <input type="text" id="studentId" class="form-control" placeholder="Enter student ID">
                         <div id="idError" class="error-message" style="display: none;"></div>
@@ -43,19 +50,19 @@
 
                     <div class="form-group">
                         <label for="studentCourse">Course *</label>
-                        <input type="text" id="studentCourse" class="form-control" placeholder="Enter course name">
+                        <select name="studentCourse" id="studentCourse" class="form-control">
+                            <option value="default" selected>Please select a course.</option>
+                            <option value="Full Stack Development">Full Stack Development</option>
+                            <option value="UI/UX">UI/UX</option>
+                            <option value="Android Development">Android Development</option>
+                            <option value="iOS Development">iOS Development</option>
+                            <option value="Game Development">Game Development</option>
+                        </select>
                         <div id="courseError" class="error-message" style="display: none;"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="studentAge">Age *</label>
-                        <input type="number" id="studentAge" class="form-control" placeholder="Enter age" min="1"
-                            max="100">
-                        <div id="ageError" class="error-message" style="display: none;"></div>
-                    </div>
-
                     <button type="submit" id="submitBtn" class="btn btn-primary">
-                        ➕ Add Student
+                        ➕Add Student
                     </button>
                     <button type="button" id="cancelBtn" class="btn btn-secondary"
                         style="display: none; margin-left: 8px;">
@@ -66,10 +73,11 @@
 
             <div class="card students-section">
                 <h2>Students List</h2>
-                
+
                 <div class="search-bar">
                     <div class="search-icon">🔍</div>
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search students by name, ID, or course...">
+                    <input type="text" id="searchInput" class="form-control"
+                        placeholder="Search students by name, ID, or course...">
                 </div>
 
                 <div id="studentsContainer">
@@ -83,6 +91,142 @@
     </div>
 
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script>
+
+        const nameField = document.getElementById("studentName");
+        const ageField = document.getElementById("studentAge");
+        const courseField = document.getElementById("studentCourse");
+        const idField = document.getElementById("studentId");
+
+        class Student {
+            constructor(name, age, id, course) {
+                this.name = name;
+                this.age = age;
+                this.id = id;
+                this.course = course;
+            }
+
+            getName() {
+                return this.name;
+            }
+
+            getAge() {
+                return this.age;
+            }
+
+            getCourse() {
+                return this.course;
+            }
+
+            getId() {
+                return this.id;
+            }
+        }
+
+        class StudentManager {
+            constructor() {
+                this.students = [];
+                this.studentCount = this.students.length;
+            }
+
+            addStudent(student) {
+                this.students.push(student);
+            }
+
+            getStudentList() {
+                return this.students;
+            }
+
+            getStudentCount() {
+                return this.students.length;
+            }
+
+        }
+
+        $(document).ready(function () {
+            $("#studentCourse").niceSelect();
+
+            const studentManager = new StudentManager();
+
+            function updateStats() {
+                document.getElementById("totalStudents").innerText = studentManager.getStudentCount();
+            }
+
+            function renderStudents() {
+                const container = document.getElementById("studentsContainer");
+                const students = studentManager.getStudentList();
+
+                if (students.length === 0) {
+                    container.html(`
+                        <div class="empty-state">
+                            <h3>No students added yet</h3>
+                            <p>Add your first student to get started</p>
+                        </div>
+                    `);
+                    return;
+                }
+
+                let tableHTML = `
+                     <table class="student-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Student ID</th>
+                                <th>Course</th>
+                                <th>Age</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                students.forEach((student) => {
+                    tableHTML += `
+                        <tr class="fade-in">
+                            <td><strong>${student.getName()}</strong></td>
+                            <td>${student.getId()}</td>
+                            <td>${student.getCourse()}</td>
+                            <td>${student.getAge()}</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-warning btn-small edit-btn">
+                                        ✏️ Edit
+                                    </button>
+                                    <button class="btn btn-danger btn-small delete-btn">
+                                        🗑️ Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `
+                })
+
+                tableHTML += '</tbody></table>';
+                container.innerHTML = tableHTML;
+            }
+
+            $("#submitBtn").on("click", function (e) {
+                e.preventDefault();
+
+                const name = nameField.value.trim();
+                const age = ageField.value;
+                const course = courseField.value;
+                const id = idField.value;
+
+                const student = new Student(name, age, id, course)
+
+                studentManager.addStudent(student);
+                studentManager.getStudentList();
+                renderStudents();
+                updateStats();
+            })
+
+        });
+
+
+
+    </script>
 </body>
 
 </html>
