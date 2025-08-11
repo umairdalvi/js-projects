@@ -7,6 +7,8 @@
     <title>Student Mgmt. System</title>
 
     <link rel="stylesheet" href="./assets/css/style.css ">
+    <link rel="stylesheet" href="./assets/css/font-awesome-7.0.0-all.min.css">
+    <link rel="stylesheet" href="./assets/fonts/webfonts/v5-font-face.css">
 </head>
 
 <body>
@@ -31,26 +33,44 @@
                 <form id="studentForm">
                     <div class="form-group">
                         <label for="studentName">Name *</label>
-                        <input type="text" id="studentName" class="form-control" placeholder="Enter student name">
+                        <input type="text" id="studentName" class="form-control" placeholder="Enter student name"
+                            name="name">
                         <div id="nameError" class="error-message" style="display: none;"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="studentAge">Age *</label>
                         <input type="number" id="studentAge" class="form-control" placeholder="Enter age" min="1"
-                            max="100">
+                            max="100" name="age">
                         <div id="ageError" class="error-message" style="display: none;"></div>
                     </div>
 
                     <div class="form-group">
+                        <label>Gender *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="male" name="studentGender" value="Male" autocomplete="sex">
+                                <label for="male" class="radio-label">Male</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="female" name="studentGender" value="Female" autocomplete="sex">
+                                <label for="female" class="radio-label">Female</label>
+                            </div>
+                        </div>
+                        <div id="genderError" class="error-message" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="studentId">Student ID *</label>
-                        <input type="text" id="studentId" class="form-control" placeholder="Enter student ID">
+                        <input type="text" id="studentId" class="form-control" placeholder="Enter student ID"
+                            name="Student ID">
                         <div id="idError" class="error-message" style="display: none;"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="studentCourse">Course *</label>
-                        <select name="studentCourse" id="studentCourse" class="form-control">
+                        <select name="studentCourse" id="studentCourse" class="form-control" name="country"
+                            autocomplete="country">
                             <option value="default" selected>Please select a course.</option>
                             <option value="Full Stack Development">Full Stack Development</option>
                             <option value="UI/UX">UI/UX</option>
@@ -62,11 +82,12 @@
                     </div>
 
                     <button type="submit" id="submitBtn" class="btn btn-primary">
-                        ➕Add Student
+                        <span><i class="fa-solid fa-plus"></i></span>
+                        Add Student
                     </button>
                     <button type="button" id="cancelBtn" class="btn btn-secondary"
-                        style="display: none; margin-left: 8px;">
-                        Cancel
+                        style="margin-left: 8px;">
+                        Clear
                     </button>
                 </form>
             </div>
@@ -75,7 +96,7 @@
                 <h2>Students List</h2>
 
                 <div class="search-bar">
-                    <div class="search-icon">🔍</div>
+                    <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                     <input type="text" id="searchInput" class="form-control"
                         placeholder="Search students by name, ID, or course...">
                 </div>
@@ -92,141 +113,9 @@
 
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script>
+    <script src="./assets/js/sweetalert2@11.js"></script>
+    <script src="./assets/js/main.js"></script>
 
-        const nameField = document.getElementById("studentName");
-        const ageField = document.getElementById("studentAge");
-        const courseField = document.getElementById("studentCourse");
-        const idField = document.getElementById("studentId");
-
-        class Student {
-            constructor(name, age, id, course) {
-                this.name = name;
-                this.age = age;
-                this.id = id;
-                this.course = course;
-            }
-
-            getName() {
-                return this.name;
-            }
-
-            getAge() {
-                return this.age;
-            }
-
-            getCourse() {
-                return this.course;
-            }
-
-            getId() {
-                return this.id;
-            }
-        }
-
-        class StudentManager {
-            constructor() {
-                this.students = [];
-                this.studentCount = this.students.length;
-            }
-
-            addStudent(student) {
-                this.students.push(student);
-            }
-
-            getStudentList() {
-                return this.students;
-            }
-
-            getStudentCount() {
-                return this.students.length;
-            }
-
-        }
-
-        $(document).ready(function () {
-            $("#studentCourse").niceSelect();
-
-            const studentManager = new StudentManager();
-
-            function updateStats() {
-                document.getElementById("totalStudents").innerText = studentManager.getStudentCount();
-            }
-
-            function renderStudents() {
-                const container = document.getElementById("studentsContainer");
-                const students = studentManager.getStudentList();
-
-                if (students.length === 0) {
-                    container.html(`
-                        <div class="empty-state">
-                            <h3>No students added yet</h3>
-                            <p>Add your first student to get started</p>
-                        </div>
-                    `);
-                    return;
-                }
-
-                let tableHTML = `
-                     <table class="student-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Student ID</th>
-                                <th>Course</th>
-                                <th>Age</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
-                students.forEach((student) => {
-                    tableHTML += `
-                        <tr class="fade-in">
-                            <td><strong>${student.getName()}</strong></td>
-                            <td>${student.getId()}</td>
-                            <td>${student.getCourse()}</td>
-                            <td>${student.getAge()}</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn btn-warning btn-small edit-btn">
-                                        ✏️ Edit
-                                    </button>
-                                    <button class="btn btn-danger btn-small delete-btn">
-                                        🗑️ Delete
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    `
-                })
-
-                tableHTML += '</tbody></table>';
-                container.innerHTML = tableHTML;
-            }
-
-            $("#submitBtn").on("click", function (e) {
-                e.preventDefault();
-
-                const name = nameField.value.trim();
-                const age = ageField.value;
-                const course = courseField.value;
-                const id = idField.value;
-
-                const student = new Student(name, age, id, course)
-
-                studentManager.addStudent(student);
-                studentManager.getStudentList();
-                renderStudents();
-                updateStats();
-            })
-
-        });
-
-
-
-    </script>
 </body>
 
 </html>
