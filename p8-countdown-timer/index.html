@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer</title>
+
+    <link rel="shortcut icon" href="./assets/images/hourglass-half-solid.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="./assets/css/remixicon.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    
+</head>
+
+<body>
+    <header>
+        <h1>Countdown Timer</h1>
+        <p>Set your time and stay focused</p>
+    </header>
+
+    <div class="timer-container">
+        <div class="input-section">
+            <h3>Set Your Timer</h3>
+            <div class="inputs">
+                <div class="input-group">
+                    <label for="hours">Hours</label>
+                    <input type="number" id="hours" name="hours" min="0" placeholder="00">
+                </div>
+                <div class="input-group">
+                    <label for="minutes">Minutes</label>
+                    <input type="number" id="minutes" name="minutes" min="0" max="59" placeholder="00">
+                </div>
+                <div class="input-group">
+                    <label for="seconds">Seconds</label>
+                    <input type="number" id="seconds" name="seconds" min="0" max="59" placeholder="00">
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-display">
+            <div class="time" id="display">00:00:00</div>
+        </div>
+        <section class="quote-section" id="quote">
+            <div class="quote-text" id="quote-text">Your motivational quote will appear here when the
+                timer ends <span class="author">Author</span> </div>
+        </section>
+
+        <div class="controls">
+            <button id="startBtn"><i class="ri-play-large-fill"></i> Start</button>
+            <button id="pauseBtn"><i class="ri-pause-large-line"></i> Pause</button>
+            <button id="resetBtn"><i class="ri-stop-large-fill"></i> Reset</button>
+        </div>
+
+
+        <audio id="endSound" src="./assets/audio/alarm.mp3" preload="auto"></audio>
+    </div>
+
+    <script src="./assets/js/sweetalert2@11.js"></script>
+    <script src="./assets/js/tsparticles.confetti.bundle.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+</body>
+
+</html>
