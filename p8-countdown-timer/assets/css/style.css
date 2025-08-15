@@ -116,6 +116,17 @@ header p {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+.timer-container .input-section .inputs .input-group .limit {
+  margin-top: 3px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.timer-container .input-section .inputs .input-group .limit span {
+  margin: 0 2px;
+}
+.timer-container .input-section .inputs .input-group .limit.error {
+  color: var(--danger-color);
+}
 .timer-container .input-section .inputs .input-group input {
   width: 100%;
   padding: 1rem;
@@ -285,6 +296,12 @@ header p {
 @media (max-width: 576px) {
   .timer-display .time {
     font-size: 2.75rem !important;
+  }
+}
+@media (max-width: 430px) {
+  .limit {
+    display: flex;
+    flex-direction: column;
   }
 }
 .swal2-popup {

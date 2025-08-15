@@ -59,6 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
         timerDisplay.innerText = formatTime(totalSeconds);
     }
 
+    function validateTime(hour, min, sec) {
+
+        if (hour < 0 || min < 0 || sec < 0) return false;
+        if (hour === 0 && min === 0 && sec === 0) return false;
+        if (min < 0 || min > 59 || sec < 0 || sec > 59) return false;
+
+        return true;
+    }
+
     function startTimer() {
         alarm.pause();
         alarm.currentTime = 0;
@@ -67,15 +76,15 @@ document.addEventListener("DOMContentLoaded", function () {
         let min = parseInt(minField.value) || 0;
         let sec = parseInt(secField.value) || 0;
 
-        if (hour === 0 && min === 0 && sec === 0) {
+        if (!validateTime(hour, min, sec)) {
             Swal.fire({
                 icon: "warning",
-                text: "Please enter a time before starting the countdown",
+                text: "Please enter a valid time before starting the countdown",
                 timer: 2200,
                 timerProgressBar: true
             })
             return;
-        }
+        };
 
         if (timerInterval) return;
 
@@ -119,12 +128,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function pauseTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
+        alarm.pause();
     }
 
     startBtn.addEventListener("click", startTimer);
     resetBtn.addEventListener("click", resetTimer);
     pauseBtn.addEventListener("click", pauseTimer);
-    document.addEventListener("keypress", (e) => { if (e.key === "Enter") startTimer() });
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            startTimer();
+        }
+    });
 
     //=============================== CONFETTI ================================================
     let confettiInterval = null;
