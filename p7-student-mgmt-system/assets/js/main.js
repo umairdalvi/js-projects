@@ -258,15 +258,18 @@ document.addEventListener("DOMContentLoaded", function () {
         updateStats();
     });
 
-    $(document).on("click", ".edit-btn", function () {
-        const updateId = this.id;
-        const idx = studentManager.students.findIndex(s => s.id === updateId);
-        studentManager.editStudentInfo(idx);
-    });
+    document.addEventListener("click", function (e) {
 
-    $(document).on("click", ".delete-btn", function () {
-        studentManager.deleteStudent(this.id, renderStudents, updateStats);
-    });
+        const editBtn = e.target.closest(".edit-btn");
+        const deleteBtn = e.target.closest(".delete-btn");
+
+        if (editBtn) {
+            const idx = studentManager.students.findIndex(s => s.id === editBtn.id);
+            studentManager.editStudentInfo(idx);
+        } else if (deleteBtn) {
+            studentManager.deleteStudent(deleteBtn.id, renderStudents, updateStats);
+        }
+    })
 
     searchInput.addEventListener("input", function () {
         currentSearchQuery = this.value.trim();
