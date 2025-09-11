@@ -208,6 +208,11 @@
     <main>
         <div class="container">
             <h2 class="page-title">Shop Products</h2>
+            <div class="sorting">
+                <p>Sort by Price:</p>
+                <button class="sort-btn btn" onclick="sortProducts(`asc`)">Low to High</button>
+                <button class="sort-btn btn" onclick="sortProducts(`des`)">High to Low</button>
+            </div>
         </div>
         <div class="container">
             <div class="product-grid" id="product-grid"></div>
