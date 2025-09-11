@@ -12,14 +12,6 @@ if (menuToggle && offcanvas && closeBtn) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const itemCountDisplay = document.getElementById("item-count");
-    if (itemCountDisplay) {
-        itemCountDisplay.innerText =
-            localStorage.getItem("itemCount") || 0;
-    }
-});
-
 if (document.querySelector(".mySwiper")) {
     var swiper = new Swiper(".mySwiper", {
         navigation: {

@@ -584,6 +584,36 @@ header {
   transition: var(--transition);
 }
 
+.empty-state {
+  margin: auto;
+  text-align: center;
+  a{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 15px 25px;
+  }
+  img {
+    width: 30%;
+    margin: auto;
+  }
+}
+
+.sorting{
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.sort-btn{
+  color: var(--red) !important;
+  border: none;
+  padding: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
 .cart-details {
   display: flex;
   justify-content: space-between;

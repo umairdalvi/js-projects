@@ -374,6 +374,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const itemCountDisplay = document.getElementById("item-count");
+            if (itemCountDisplay) {
+                itemCountDisplay.innerText = JSON.parse(localStorage.getItem("cart")).length;
+            }
+        });
+    </script>
 </body>
 
 
