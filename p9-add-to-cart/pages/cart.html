@@ -224,7 +224,13 @@
         </div>
 
         <div class="container cart-details">
-            <div class="cart-table-wrapper">
+            <div class="empty-state" id="empty-state">
+                <h2>Your Cart is Empty.</h2>
+                <a href="./products.html" class="btn-outline">Go to Shop</a>
+                <img src="../assets/images/empty-cart.jpg" alt="empty-cart">
+            </div>
+
+            <div class="cart-table-wrapper" id="cart-table-wrapper">
                 <table class="cart-table">
                     <thead class="table-head">
                         <tr class="table-head-row">
@@ -247,7 +253,7 @@
                 </div>
             </div>
 
-            <div class="cart-totals">
+            <div class="cart-totals" id="cart-totals">
                 <div class="cart-amounts">
                     <p>Cart Totals</p>
                     <div>
