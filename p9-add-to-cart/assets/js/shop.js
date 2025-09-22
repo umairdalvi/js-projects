@@ -109,7 +109,6 @@ function addToCart(productIdx) {
 
     Swal.fire({
         position: "top-end",
-        icon: "success",
         title: "Product successfully added to cart.",
         showConfirmButton: false,
         timer: 1300,

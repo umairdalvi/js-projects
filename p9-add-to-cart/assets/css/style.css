@@ -975,17 +975,23 @@ footer .container {
   }
 }
 .swal2-container.swal2-top-end > .swal2-popup {
+  height: 60px;
+  width: 300px;
   border-radius: 12px;
   padding: 1rem 1.25rem;
   font-family: "Roboto", sans-serif;
-  background-color: #fff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-accent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .swal2-title {
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-primary);
+  padding: 0;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 .swal2-icon {
