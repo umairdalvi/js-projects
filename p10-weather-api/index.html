@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="app-title">Weather App</h1>
+        </header>
+
+        <main class="main">
+            <div class="search-section">
+                <form class="search-form" id="weatherForm">
+                    <input type="text" class="search-input" id="cityInput" placeholder="Enter city name..." required
+                        autocomplete="off">
+                    <button type="submit" class="search-btn" id="search-btn">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="weather-display" id="weatherDisplay">
+                <div class="loading" id="loadingSpinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Loading weather data...</p>
+                </div>
+
+                <div class="error-message" id="errorMessage" style="display: none;">
+                    <p id="error-text">City not found. Please try again.</p>
+                </div>
+
+                <div class="weather-card" id="weatherCard" style="display: none;">
+                    <div class="weather-header">
+                        <h2 class="city-name" id="cityName"></h2>
+                        <p class="date-time" id="dateTime"></p>
+                    </div>
+
+                    <div class="weather-main">
+                        <div class="temperature-section">
+                            <div class="temp-display">
+                                <span class="temperature" id="temperature">22°C</span>
+                                <div class="weather-icon">
+                                    <img id="weatherIcon" src="" alt="Weather icon">
+                                </div>
+                            </div>
+                            <p class="weather-description" id="weatherDescription">Partly cloudy</p>
+                        </div>
+
+                        <div class="weather-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Feels like</span>
+                                <span class="detail-value" id="feelsLike"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Humidity</span>
+                                <span class="detail-value" id="humidity"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Wind Speed</span>
+                                <span class="detail-value" id="windSpeed"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Pressure</span>
+                                <span class="detail-value" id="pressure"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Visibility</span>
+                                <span class="detail-value" id="visibility"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
