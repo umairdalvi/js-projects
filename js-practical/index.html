@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Shop</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search" id="product-search">
+                        <input id="search-field" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-outline-success" id="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid p-3">
+        <div class="page-header">
+            <h1 class="text-center mt-1">Products</h1>
+            <div class="product-actions">
+                <p>Sort by Price:</p>
+                <button class="btn btn-primary" onclick="sortProducts('asc')">Sort Ascending</button>
+                <button class="btn btn-primary" onclick="sortProducts('des')">Sort Descending</button>
+            </div>
+        </div>
+        <div id="products" class="mt-5 w-100 d-flex">
+            <div id="product-form-wrapper" class="sticky-top w-25 h-auto">
+                <form id="product-form" class="me-3">
+                    <div class="mb-3 w-100">
+                        <label for="product-name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control w-100" id="product-name" value="">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="product-category" class="form-label">Product Category</label>
+                        <input type="text" class="form-control w-100" id="product-category" value="">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="product-price" class="form-label">Product Price</label>
+                        <input type="text" class="form-control w-100" id="product-price" value="">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="product-image" class="form-label">Product Image URL</label>
+                        <input type="text" class="form-control w-100" id="product-image" value="">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="product-id" class="form-label">Product ID</label>
+                        <input type="text" class="form-control w-100" id="product-id" value="">
+                    </div>
+
+                    <button type="submit" id="add-product" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="product-grid border border-2 d-flex flex-wrap gap-2 p-1" id="product-grid"></div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

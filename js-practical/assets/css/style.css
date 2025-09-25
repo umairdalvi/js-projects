@@ -1,0 +1,17 @@
+.card {
+    width: 240px !important;
+    min-height: fit-content;
+    max-height: fit-content;
+}
+
+#product-form-wrapper {
+    width: 20% !important;
+
+    .form-control {
+        width: 100% !important;
+    }
+}
+
+.product-grid {
+    flex: 1;
+}
