@@ -1,36 +1,36 @@
 :root {
-  --primary-color: #2563eb;
-  --primary-light: #3b82f6;
-  --secondary-color: #f8fafc;
-  --background-color: #ffffff;
-  --surface-color: #f8fafc;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
+  --primary-color: #3b82f6;
+  --primary-light: #60a5fa;
+  --secondary-color: #1e293b;
+  --background-color: #0f172a;
+  --surface-color: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-color: #334155;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -2px rgba(0, 0, 0, 0.3);
   --border-radius: clamp(0.25rem, 0.5vw, 0.375rem);
   --transition: all 0.15s ease;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --primary-color: #3b82f6;
-    --primary-light: #60a5fa;
-    --secondary-color: #1e293b;
-    --background-color: #0f172a;
-    --surface-color: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
+    --primary-color: #2563eb;
+    --primary-light: #3b82f6;
+    --secondary-color: #f8fafc;
+    --background-color: #ffffff;
+    --surface-color: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
     --text-muted: #94a3b8;
-    --border-color: #334155;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
-      0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 }
 
@@ -243,14 +243,20 @@ body {
 
 .temperature {
   font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--primary-color);
   letter-spacing: -0.02em;
 }
 
+.weather-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .weather-icon img {
-  width: clamp(2.25rem, 4vw, 3rem);
-  height: clamp(2.25rem, 4vw, 3rem);
+  width: clamp(6rem, 11vw, 8rem);
+  height: clamp(6rem, 11vw, 8rem);
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
   border-radius: 5px;
 }
@@ -316,12 +322,6 @@ body {
     text-align: center;
   }
 
-  .search-form {
-    flex-direction: column;
-    gap: clamp(0.5rem, 1.5vw, 0.75rem);
-    padding: clamp(0.5rem, 1.5vw, 0.75rem);
-  }
-
   .temp-display {
     flex-direction: column;
     gap: clamp(0.5rem, 1.5vw, 0.75rem);
@@ -331,6 +331,30 @@ body {
 @media (max-width: 480px) {
   .detail-item {
     padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.375rem, 1vw, 0.5rem);
+  }
+
+  .search-icon {
+    gap: 5px !important;
+  }
+
+  .search-icon img {
+    max-height: 16px;
+    max-width: 16px;
+  }
+
+  .search-form {
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    padding: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+}
+
+@media (max-width: 320px) {
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-icon img {
+    display: none;
   }
 }
 
@@ -349,13 +373,14 @@ p {
     border-color 0.15s ease;
 }
 
-.search-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .search-icon img {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
 }
