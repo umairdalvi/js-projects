@@ -1,7 +1,23 @@
 class weatherApp {
     constructor() {
         this.WEATHER_API_KEY = 'aef678dee6066376522590b6d051b5dc';
-        this.TIMEZONE_API_KEY = '3b9fc2b16e6d4e058680f604b4f9ecff'
+        this.TIMEZONE_API_KEY = '3b9fc2b16e6d4e058680f604b4f9ecff';
+
+        this.cityList = [
+            "Mumbai",
+            "London",
+            "New Delhi",
+            "Tokyo",
+            "New York",
+            "Paris",
+            "Berlin",
+            "Singapore",
+            "Lagos",
+            "Cape Town",
+            "Moscow",
+            "Sydney",
+            "Nairobi"
+        ]
 
         this.elements = {
             form: document.getElementById('weatherForm'),
@@ -61,7 +77,10 @@ class weatherApp {
     }
 
     async searchCity() {
-        const CITY = this.elements.cityInput.value.trim().toLowerCase();
+        const CITY =
+            this.elements.cityInput.value.trim().toLowerCase() ||
+            this.cityList[Math.floor(Math.random() * 13)];
+
         if (!CITY) return null;
 
         try {
@@ -131,4 +150,7 @@ class weatherApp {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => { new weatherApp() })
+document.addEventListener("DOMContentLoaded", () => {
+    const app = new weatherApp();
+    app.displayWeatherData();
+})
