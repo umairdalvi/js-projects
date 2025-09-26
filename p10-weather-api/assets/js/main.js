@@ -1,23 +1,13 @@
-class weatherApp {
+class WeatherApp {
     constructor() {
         this.WEATHER_API_KEY = 'aef678dee6066376522590b6d051b5dc';
         this.TIMEZONE_API_KEY = '3b9fc2b16e6d4e058680f604b4f9ecff';
 
         this.cityList = [
-            "Mumbai",
-            "London",
-            "New Delhi",
-            "Tokyo",
-            "New York",
-            "Paris",
-            "Berlin",
-            "Singapore",
-            "Lagos",
-            "Cape Town",
-            "Moscow",
-            "Sydney",
-            "Nairobi"
-        ]
+            "Mumbai", "London", "New Delhi", "Shanghai", "Tokyo", "New York",
+            "Paris", "Sydney", "Cape Town", "Berlin", "Singapore", "Lagos",
+            "Osaka", "Moscow", "Nairobi", "Beijing"
+        ];
 
         this.elements = {
             form: document.getElementById('weatherForm'),
@@ -38,7 +28,7 @@ class weatherApp {
             windSpeed: document.getElementById('windSpeed'),
             pressure: document.getElementById('pressure'),
             visibility: document.getElementById('visibility'),
-        }
+        };
 
         this.elements.form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -69,7 +59,8 @@ class weatherApp {
         this.hideCard();
         this.hideLoader();
         this.elements.errorMessage.style.display = 'block';
-        this.elements.errorText.innerText = error.message || "Something went wrong.";
+        this.elements.errorText.innerText =
+            error && error.message ? error.message : "Something went wrong.";
     }
 
     hideError() {
@@ -79,16 +70,18 @@ class weatherApp {
     async searchCity() {
         const CITY =
             this.elements.cityInput.value.trim().toLowerCase() ||
-            this.cityList[Math.floor(Math.random() * 13)];
+            this.cityList[Math.floor(Math.random() * this.cityList.length)];
 
         if (!CITY) return null;
 
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${this.WEATHER_API_KEY}`);
+            const response = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${this.WEATHER_API_KEY}`
+            );
 
             if (!response.ok) {
-                if (response.status == 404) {
-                    throw new Error("City not found! Please check the spelling and try again.")
+                if (response.status === 404) {
+                    throw new Error("City not found! Please check the spelling and try again.");
                 } else {
                     throw new Error("Something went wrong. Please try again later.");
                 }
@@ -104,10 +97,16 @@ class weatherApp {
 
     async getTimezone(lat, lon) {
         try {
-            const response = await fetch(`https://timezone.abstractapi.com/v1/current_time?api_key=${this.TIMEZONE_API_KEY}&location=${lat},${lon}`);
+            const response = await fetch(
+                `https://timezone.abstractapi.com/v1/current_time?api_key=${this.TIMEZONE_API_KEY}&location=${lat},${lon}`
+            );
 
             if (!response.ok) {
-                throw new Error("Something went wrong. Please try again later.");
+                if (response.status === 429) {
+                    throw new Error("Please wait a few seconds before searching again!");
+                } else {
+                    throw new Error("Something went wrong. Please try again later.");
+                }
             }
 
             return await response.json();
@@ -128,11 +127,12 @@ class weatherApp {
             if (!city) return;
 
             let timezone = await this.getTimezone(city.coord.lat, city.coord.lon);
+            if (!timezone) return;
 
-            this.elements.weatherCard.style.display = "block";
+            this.showCard();
             this.elements.cityName.innerText = `${city.name}, ${city.sys.country}`;
-            this.elements.dateTime.innerText = `${timezone.datetime} ${timezone.timezone_abbreviation}`
-            this.elements.weatherIcon.src = `https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`
+            this.elements.dateTime.innerText = `${timezone.datetime} ${timezone.timezone_abbreviation}`;
+            this.elements.weatherIcon.src = `https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`;
             this.elements.temperature.innerText = `${(city.main.temp).toFixed(1)} °C`;
             this.elements.feelsLike.innerText = `${(city.main.feels_like).toFixed(1)} °C`;
             this.elements.humidity.innerText = `${city.main.humidity}%`;
@@ -151,6 +151,6 @@ class weatherApp {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const app = new weatherApp();
-    app.displayWeatherData();
-})
+    const app = new WeatherApp();
+    setTimeout(app.displayWeatherData.bind(app), 500);
+});
