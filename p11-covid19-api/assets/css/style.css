@@ -1,0 +1,323 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+  padding: 15px;
+  color: #1e293b;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.search-section {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.search-btn {
+  padding: 10px 18px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.stats-container {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  display: none;
+}
+
+.state-title {
+  text-align: center;
+  color: #1e293b;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  width: 25%;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.stat-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.total-cases {
+  color: #1e293b;
+}
+
+.indian-cases {
+  color: #059669;
+}
+
+.foreign-cases {
+  color: #d97706;
+}
+
+.discharged {
+  color: #0891b2;
+}
+
+.deaths {
+  color: #dc2626;
+}
+
+.summary-card {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 15px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.summary-title {
+  font-size: 1.1rem;
+  color: #1e293b;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.recovery-rate,
+.mortality-rate {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 0.95rem;
+}
+
+.rate-value {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.recovery-rate .rate-value {
+  color: #059669;
+}
+
+.mortality-rate .rate-value {
+  color: #dc2626;
+}
+
+.loading,
+.no-data {
+  text-align: center;
+  color: #64748b;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.no-data {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+  }
+
+  .stat-card {
+    padding: 15px;
+    width: 45%;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+
+  .header, .state-title {
+    color: #f1f5f9;
+  }
+
+  .header p, .total-cases {
+    color: #94a3b8;
+  }
+
+  .search-section,
+  .stats-container,
+  .summary-card,
+  .no-data {
+    background: #1e293b;
+    border: 1px solid #334155;
+  }
+
+  .search-input {
+    background: #0f172a;
+    border: 2px solid #334155;
+    color: #f1f5f9;
+  }
+
+  .search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+
+  .search-btn {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  .search-btn:hover {
+    background: #2563eb;
+  }
+
+  .stat-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+  }
+
+  .stat-card:hover {
+    background: #1e293b;
+  }
+
+  .stat-label {
+    color: #94a3b8;
+  }
+
+  .summary-title {
+    color: #f1f5f9;
+  }
+
+  .loading,
+  .no-data {
+    color: #94a3b8;
+  }
+}
