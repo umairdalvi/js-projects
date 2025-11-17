@@ -1,4 +1,4 @@
-let tasks = [];
+const tasks = [];
 const taskInput = document.getElementById("taskInput");
 const prioritySelect = document.getElementById("prioritySelect");
 const addBtn = document.getElementById("addTaskBtn");
@@ -55,13 +55,9 @@ function displayTasks() {
                         <p>Add your first task and let's make today productive!</p>
                     </div>
                 `
-        $(".empty-state").removeClass("hidden");
         return;
     }
 
-    $(".empty-state").addClass("hidden");
-
-    tasksList.innerHTML = "";
     let htmlContent = "";
 
     tasks.forEach(function (task) {

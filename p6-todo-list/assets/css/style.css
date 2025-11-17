@@ -324,6 +324,7 @@ select::placeholder {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-width: 95%;
 }
 
 .task-text {
@@ -491,10 +492,6 @@ select::placeholder {
     transform: translateX(-8px);
   }
 }
-.hidden {
-  display: none !important;
-}
-
 .error {
   box-shadow: 0 0 0 2px var(--error) !important;
 }
